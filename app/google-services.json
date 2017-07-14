@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "544461361881",
+    "firebase_url": "https://equationsolver-b9c52.firebaseio.com",
+    "project_id": "equationsolver-b9c52",
+    "storage_bucket": "equationsolver-b9c52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544461361881:android:1a725f74bc41db6d",
+        "android_client_info": {
+          "package_name": "shahin.simplequadraticsolver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544461361881-u8o5gfra55futnq29v1dbmppi70sm9aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMEZCl1fi_Wttfv9-nBv2edHbQdY7r8Ig"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="shahin.simplequadraticsolver.MainActivity"
+        android:background="@color/colorWhite"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgE"
+            android:src="@drawable/img_formula"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_top_30"
+            />
+
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_v_description"
+            style="@style/StyleGeneral"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_v_equation_not_valid"
+            style="@style/StyleGeneral"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <EditText
+                android:id="@+id/txtA"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="@string/str_v_a"
+                android:inputType="numberSigned|numberDecimal"/>
+
+            <EditText
+                android:id="@+id/txtB"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_v_b"
+                android:gravity="center"
+                android:minLines="0"
+                android:inputType="numberSigned|numberDecimal"/>
+
+            <EditText
+                android:id="@+id/txtC"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_v_c"
+                android:gravity="center"
+                android:minLines="0"
+                android:inputType="numberSigned|numberDecimal"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSolution"
+            style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_v_solve"
+            android:layout_gravity="center_horizontal"
+            android:onClick="solve"
+            android:textSize="@dimen/size_30"
+            android:textStyle="bold"
+            android:padding="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_v_reason"
+            android:id="@+id/tvReason"
+            style="@style/StyleGeneral"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_sol"
+            android:id="@+id/tvSol1"
+            style="@style/StyleGeneral"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_sol"
+            android:id="@+id/tvSol2"
+            style="@style/StyleGeneral" />
+
+    <Button
+        android:id="@+id/btnRound"
+        style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="roundNo"
+        android:text="@string/str_v_round"
+        android:textSize="@dimen/size_20"
+        android:textStyle="bold" />
+
+</LinearLayout>
