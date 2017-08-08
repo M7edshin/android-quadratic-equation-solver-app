@@ -101,15 +101,36 @@
         android:id="@+id/tvSol2"
         style="@style/StyleGeneral" />
 
-    <Button
-        android:id="@+id/btnRound"
-        style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+    <LinearLayout
+        android:id="@+id/linearLayout_extra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:onClick="roundNo"
-        android:text="@string/str_v_round"
-        android:textSize="@dimen/size_20"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnRound"
+            style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="roundNo"
+            android:text="@string/str_v_round"
+            android:textSize="@dimen/size_20"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnClear"
+            style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="clearAll"
+            android:text="@string/str_clear"
+            android:textSize="@dimen/size_20"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 
 </LinearLayout>

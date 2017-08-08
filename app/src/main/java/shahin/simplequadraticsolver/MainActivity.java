@@ -2,7 +2,6 @@ package shahin.simplequadraticsolver;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -10,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     EditText txtA, txtB, txtC;
     TextView tvSol1, tvSol2, vReason, tvInfo;
     MediaPlayer mPlayer;
-    Button btnRound, btnSolution;
+    Button btnRound;
+    LinearLayout linearLayout_extra;
 
     //Variable Declaration
     double sol1, sol2;
@@ -39,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
         txtB = (EditText) findViewById(R.id.txtB);
         txtC = (EditText) findViewById(R.id.txtC);
         btnRound = (Button) findViewById(R.id.btnRound);
+        linearLayout_extra = (LinearLayout) findViewById(R.id.linearLayout_extra);
 
         tvSol1.setVisibility(View.INVISIBLE);
         tvSol2.setVisibility(View.INVISIBLE);
         vReason.setVisibility(View.INVISIBLE);
-        btnRound.animate().alpha(0).setDuration(0);
+        linearLayout_extra.animate().alpha(0).setDuration(0);
 
     }
 
@@ -57,19 +59,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btnMyApps:
-                String urlWebsite = "https://play.google.com/store/apps/developer?id=Mohamed+Shahin";
-                Uri uriWebpage = Uri.parse(urlWebsite);
-                Intent intentWebsite = new Intent(Intent.ACTION_VIEW, uriWebpage);
-                if (intentWebsite.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intentWebsite);
-                }
-                return true;
-            case R.id.btnReport:
-                sendEmail("Report a bug");
-                return true;
             case R.id.btnSuggest:
-                sendEmail("Suggest a feature or recommendation");
+                sendEmail("Suggest a feature, recommendation or report a bug");
                 return true;
             case R.id.btnExit:
                 finish();
@@ -117,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     tvSol1.setVisibility(View.VISIBLE);
                     tvSol2.setVisibility(View.VISIBLE);
                     vReason.setVisibility(View.VISIBLE);
-                    btnRound.animate().alpha(1).setDuration(2000);
+                    linearLayout_extra.animate().alpha(1).setDuration(2000);
                     mPlayer = MediaPlayer.create(this, R.raw.clicks137);
                     mPlayer.start();
                 } else if (discriminant(a, b, c) == 0) {
@@ -127,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     vReason.setText(reason);
                     tvSol1.setVisibility(View.VISIBLE);
                     vReason.setVisibility(View.VISIBLE);
-                    btnRound.animate().alpha(1).setDuration(2000);
+                    linearLayout_extra.animate().alpha(1).setDuration(2000);
                     mPlayer = MediaPlayer.create(this, R.raw.clicks137);
                     mPlayer.start();
                 } else {
@@ -135,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     vReason.setText(reason);
                     tvSol1.setVisibility(View.INVISIBLE);
                     tvSol2.setVisibility(View.INVISIBLE);
-                    btnRound.animate().alpha(0).setDuration(2000);
+                    linearLayout_extra.animate().alpha(0).setDuration(2000);
                     vReason.setVisibility(View.VISIBLE);
                 }
             }
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             tvSol1.setVisibility(View.INVISIBLE);
             tvSol2.setVisibility(View.INVISIBLE);
             vReason.setVisibility(View.INVISIBLE);
-            btnRound.animate().alpha(0).setDuration(0);
+            linearLayout_extra.animate().alpha(0).setDuration(0);
             Toast.makeText(getApplicationContext(), R.string.str_enter_cofficient, Toast.LENGTH_SHORT).show();
 
         }
@@ -163,6 +154,18 @@ public class MainActivity extends AppCompatActivity {
         tvSol2.setText(getString(R.string.str_negative_equal) + roundSol2);
         mPlayer = MediaPlayer.create(this, R.raw.clicks148);
         mPlayer.start();
+    }
+
+    public void clearAll(View view) {
+
+        tvSol1.setText("");
+        tvSol2.setText("");
+        vReason.setText("");
+        txtA.setText("");
+        txtB.setText("");
+        txtC.setText("");
+        linearLayout_extra.animate().alpha(0).setDuration(0);
+
     }
 
     private void sendEmail(String text) {
