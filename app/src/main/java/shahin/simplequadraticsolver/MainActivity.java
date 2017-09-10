@@ -1,7 +1,9 @@
 package shahin.simplequadraticsolver;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -13,6 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+import com.google.android.gms.ads.MobileAds;
+
 public class MainActivity extends AppCompatActivity {
 
     //Views Declaration
@@ -21,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mPlayer;
     Button btnRound;
     LinearLayout linearLayout_extra;
+    private AdView mAdView;
 
     //Variable Declaration
     double sol1, sol2;
@@ -47,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
         vReason.setVisibility(View.INVISIBLE);
         linearLayout_extra.animate().alpha(0).setDuration(0);
 
+        MobileAds.initialize(this, "ca-app-pub-1885749404874590~5960525662");
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     @Override
@@ -59,10 +73,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.btnSuggest:
+
+            case R.id.action_rate:
+                rateApp();
+                return true;
+
+            case R.id.action_equation_info:
+                String url = "https://en.wikipedia.org/wiki/Quadratic_equation";
+                Uri webPage = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, webPage);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                return true;
+
+            case R.id.action_report_suggest:
                 sendEmail("Suggest a feature, recommendation or report a bug");
                 return true;
-            case R.id.btnExit:
+
+            case R.id.action_exit:
                 finish();
                 System.exit(0);
                 return true;
@@ -81,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
     //The solution
     public void solve(View view) {
-
         String reason;
 
         //Nested If statement also if statement within if statement to control the entries (Error Trap)
@@ -126,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     vReason.setText(reason);
                     tvSol1.setVisibility(View.INVISIBLE);
                     tvSol2.setVisibility(View.INVISIBLE);
-                    linearLayout_extra.animate().alpha(0).setDuration(2000);
+                    linearLayout_extra.animate().alpha(1).setDuration(2000);
                     vReason.setVisibility(View.VISIBLE);
                 }
             }
@@ -178,6 +206,22 @@ public class MainActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(i, "Send mail..."));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(MainActivity.this, "There are no email clients or apps installed on your device.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void rateApp() {
+        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
         }
     }
 }

@@ -2,13 +2,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btnSuggest"
-        android:title="Contact us"
+        android:id="@+id/action_rate"
+        android:orderInCategory="100"
+        android:title="Rate - Feedback"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/btnExit"
-        android:title="Exit"
+        android:id="@+id/action_equation_info"
+        android:orderInCategory="100"
+        android:title="About the Quadratic Equation"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_report_suggest"
+        android:orderInCategory="100"
+        android:title="Report or Suggest"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="101"
+        android:title="Exit" />
 
 </menu>

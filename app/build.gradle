@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
+    compileSdkVersion 25
     buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "shahin.simplequadraticsolver"
         minSdkVersion 16
-        targetSdkVersion 24
-        versionCode 3
-        versionName "1.2"
+        targetSdkVersion 25
+        versionCode 5
+        versionName "1.4"
     }
     buildTypes {
         release {
@@ -22,8 +22,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0'
-    compile 'com.google.firebase:firebase-ads:9.4.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+
+    //FireBase
+    compile 'com.google.firebase:firebase-core:11.2.0'
+    compile 'com.google.firebase:firebase-ads:11.2.0'
+    compile 'com.google.android.gms:play-services-ads:11.2.0'
 
 
 }

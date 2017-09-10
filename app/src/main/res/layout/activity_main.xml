@@ -10,6 +10,15 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-1885749404874590/6878855663"></com.google.android.gms.ads.AdView>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +53,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/str_v_a"
-            android:inputType="numberSigned|numberDecimal" />
+            android:inputType="numberSigned|numberDecimal"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:padding="20dp" />
 
         <EditText
             android:id="@+id/txtB"
@@ -54,7 +65,9 @@
             android:hint="@string/str_v_b"
             android:gravity="center"
             android:minLines="0"
-            android:inputType="numberSigned|numberDecimal" />
+            android:inputType="numberSigned|numberDecimal"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:padding="20dp" />
 
         <EditText
             android:id="@+id/txtC"
@@ -64,7 +77,9 @@
             android:hint="@string/str_v_c"
             android:gravity="center"
             android:minLines="0"
-            android:inputType="numberSigned|numberDecimal" />
+            android:inputType="numberSigned|numberDecimal"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:padding="20dp" />
 
     </LinearLayout>
 
@@ -76,7 +91,7 @@
         android:text="@string/str_v_solve"
         android:layout_gravity="center_horizontal"
         android:onClick="solve"
-        android:textSize="@dimen/size_30"
+        android:textSize="@dimen/size_20"
         android:textStyle="bold"
         android:padding="20dp" />
 
@@ -116,7 +131,7 @@
             android:layout_gravity="center_horizontal"
             android:onClick="roundNo"
             android:text="@string/str_v_round"
-            android:textSize="@dimen/size_20"
+            android:textSize="@dimen/size_10"
             android:textStyle="bold" />
 
         <Button
@@ -127,7 +142,7 @@
             android:layout_gravity="center_horizontal"
             android:onClick="clearAll"
             android:text="@string/str_clear"
-            android:textSize="@dimen/size_20"
+            android:textSize="@dimen/size_10"
             android:textStyle="bold" />
 
     </LinearLayout>
