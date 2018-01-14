@@ -2,26 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_rate"
-        android:orderInCategory="100"
-        android:title="Rate - Feedback"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_equation_info"
         android:orderInCategory="100"
-        android:title="About the Quadratic Equation"
+        android:title="@string/action_about"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_report_suggest"
         android:orderInCategory="100"
-        android:title="Report or Suggest"
+        android:title="@string/action_report"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_exit"
-        android:orderInCategory="101"
-        android:title="Exit" />
 
 </menu>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="shahin.simplequadraticsolver.MainActivity"
-    android:background="@color/colorWhite"
+    android:background="@color/colorPrimary"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
@@ -14,37 +15,51 @@
         android:id="@+id/adView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-1885749404874590/6878855663"></com.google.android.gms.ads.AdView>
+        ads:adUnitId="ca-app-pub-1885749404874590/6878855663"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/imgE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgE"
-        android:src="@drawable/img_formula"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/margin_top_30" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/img_formula"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvInfo"
+        style="@style/StyleGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/str_v_description"
-        style="@style/StyleGeneral" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_v_equation_not_valid"
-        style="@style/StyleGeneral" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgE" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:drawable/dialog_holo_light_frame"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo">
 
         <EditText
             android:id="@+id/txtA"
@@ -54,31 +69,28 @@
             android:gravity="center"
             android:hint="@string/str_v_a"
             android:inputType="numberSigned|numberDecimal"
-            android:background="@android:drawable/dialog_holo_light_frame"
             android:padding="20dp" />
 
         <EditText
             android:id="@+id/txtB"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="@string/str_v_b"
+            android:layout_weight="1"
             android:gravity="center"
-            android:minLines="0"
+            android:hint="@string/str_v_b"
             android:inputType="numberSigned|numberDecimal"
-            android:background="@android:drawable/dialog_holo_light_frame"
+            android:minLines="0"
             android:padding="20dp" />
 
         <EditText
             android:id="@+id/txtC"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="@string/str_v_c"
+            android:layout_weight="1"
             android:gravity="center"
-            android:minLines="0"
+            android:hint="@string/str_v_c"
             android:inputType="numberSigned|numberDecimal"
-            android:background="@android:drawable/dialog_holo_light_frame"
+            android:minLines="0"
             android:padding="20dp" />
 
     </LinearLayout>
@@ -88,40 +100,63 @@
         style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/str_v_solve"
         android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:onClick="solve"
+        android:padding="20dp"
+        android:text="@string/str_v_solve"
         android:textSize="@dimen/size_20"
         android:textStyle="bold"
-        android:padding="20dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_v_reason"
         android:id="@+id/tvReason"
-        style="@style/StyleGeneral" />
-
-    <TextView
+        style="@style/StyleGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/str_sol"
+        android:layout_marginStart="8dp"
+        android:text="@string/str_v_reason"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSolution" />
+
+    <TextView
         android:id="@+id/tvSol1"
-        style="@style/StyleGeneral" />
+        style="@style/StyleGeneral"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/str_sol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReason" />
 
     <TextView
+        android:id="@+id/tvSol2"
+        style="@style/StyleGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/str_sol"
-        android:id="@+id/tvSol2"
-        style="@style/StyleGeneral" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSol1" />
 
     <LinearLayout
         android:id="@+id/linearLayout_extra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSol2">
 
         <Button
             android:id="@+id/btnRound"
@@ -148,4 +183,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

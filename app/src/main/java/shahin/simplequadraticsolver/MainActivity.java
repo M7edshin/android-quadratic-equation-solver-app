@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mPlayer;
     Button btnRound;
     LinearLayout linearLayout_extra;
-    private AdView mAdView;
 
     //Variable Declaration
     double sol1, sol2;
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this, "ca-app-pub-1885749404874590~5960525662");
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -74,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
-            case R.id.action_rate:
-                rateApp();
+            case R.id.action_report_suggest:
+                sendEmail(getString(R.string.action_suggestion));
                 return true;
 
             case R.id.action_equation_info:
@@ -85,15 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivity(intent);
                 }
-                return true;
-
-            case R.id.action_report_suggest:
-                sendEmail("Suggest a feature, recommendation or report a bug");
-                return true;
-
-            case R.id.action_exit:
-                finish();
-                System.exit(0);
                 return true;
         }
         return super.onOptionsItemSelected(item);
