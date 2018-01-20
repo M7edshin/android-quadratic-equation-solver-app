@@ -1,7 +1,10 @@
-Solve Quadratic Equation just enter the three coefficients and hit the "Solution"
+Quadratic equation solver for students who are looking for a quick answer to any value of a Quadratic equation.
 
-You can solve quadratic equations in just a few seconds. just enter the three coefficients and hit the "Solution"
+- Solve the equation gives you ( One solution or two solution ) but doesn't support complex answers
+- Simple and easy to use
+- Round the numbers
 
-This app doesn't provide Imaginary roots solutions
+Find it on Google Store:
+https://play.google.com/store/apps/details?id=shahin.simplequadraticsolver
 
 Developed by Mohamed Shahin
