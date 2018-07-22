@@ -2,6 +2,8 @@
 
 Entering the coefficients for the Ax2 + Bx + C = 0 equation and Quadratic Equation will output the solutions (if they are not imaginary).
 
+![alt text](https://i.imgur.com/crltZPm.png?1)
+
 ### Features
 
 * Solve the equation gives you ( One solution or two solution ) but doesn't support complex answers
