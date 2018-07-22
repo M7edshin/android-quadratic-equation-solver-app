@@ -1,8 +1,12 @@
-Quadratic equation solver for who are looking for a quick answer to any values of a Quadratic equation.
+## Quadratic equation solver 
+
+Entering the coefficients for the Ax2 + Bx + C = 0 equation and Quadratic Equation will output the solutions (if they are not imaginary).
+
+### Features
 
 * Solve the equation gives you ( One solution or two solution ) but doesn't support complex answers
 * Simple and easy to use
-* Round the numbers
+* Round the results to two decimal points
 
 ### Google Store: 
 https://play.google.com/store/apps/details?id=shahin.simplequadraticsolver
