@@ -8,9 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="StyleGeneral">
+    <style name="StyleTextViewSolution">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="StyleTextViewGeneral">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorBlack</item>
     </style>
 
 </resources>

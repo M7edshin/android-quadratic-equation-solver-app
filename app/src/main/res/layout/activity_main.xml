@@ -5,103 +5,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="shahin.simplequadraticsolver.MainActivity"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBackground"
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.CardView
+        android:id="@+id/iv_formula"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-1885749404874590/6878855663"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        card_view:cardBackgroundColor="@color/colorBackground"
         android:layout_marginTop="8dp"
-        android:src="@drawable/img_formula"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvInfo"
-        style="@style/StyleGeneral"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_formula"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/text_formula"
+            android:padding="10dp"/>
+
+    </android.support.v7.widget.CardView>
+
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:id="@+id/tv_info"
+        style="@style/StyleTextViewGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/str_v_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgE" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_formula"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/et_a"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:hint="@string/str_v_a"
+        android:inputType="numberSigned|numberDecimal"
+        android:minLines="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+    <EditText
+        android:id="@+id/et_b"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:orientation="horizontal"
+        android:gravity="center"
+        android:hint="@string/str_v_b"
+        android:inputType="numberSigned|numberDecimal"
+        android:minLines="0"
+        app:layout_constraintEnd_toStartOf="@+id/et_c"
+        app:layout_constraintStart_toEndOf="@+id/et_a"
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+
+    <EditText
+        android:id="@+id/et_c"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:hint="@string/str_v_c"
+        android:inputType="numberSigned|numberDecimal"
+        android:minLines="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfo">
+        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
-        <EditText
-            android:id="@+id/txtA"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/str_v_a"
-            android:inputType="numberSigned|numberDecimal"
-            android:padding="20dp" />
-
-        <EditText
-            android:id="@+id/txtB"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/str_v_b"
-            android:inputType="numberSigned|numberDecimal"
-            android:minLines="0"
-            android:padding="20dp" />
-
-        <EditText
-            android:id="@+id/txtC"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/str_v_c"
-            android:inputType="numberSigned|numberDecimal"
-            android:minLines="0"
-            android:padding="20dp" />
-
-    </LinearLayout>
 
     <Button
-        android:id="@+id/btnSolution"
+        android:id="@+id/btn_solution"
         style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="solve"
@@ -111,76 +110,76 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/et_a" />
 
     <TextView
-        android:id="@+id/tvReason"
-        style="@style/StyleGeneral"
+        android:id="@+id/tv_reason"
+        style="@style/StyleTextViewGeneral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/str_v_reason"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSolution" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_solution" />
 
     <TextView
-        android:id="@+id/tvSol1"
-        style="@style/StyleGeneral"
+        android:id="@+id/tv_sol_one"
+        style="@style/StyleTextViewSolution"
         android:layout_width="wrap_content"
         android:layout_height="22dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/str_sol"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvReason" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_reason" />
 
     <TextView
-        android:id="@+id/tvSol2"
-        style="@style/StyleGeneral"
+        android:id="@+id/tv_sol_two"
+        style="@style/StyleTextViewSolution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/str_sol"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSol1" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sol_one" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout_extra"
+    <Button
+        android:id="@+id/btn_round"
+        style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
+        android:onClick="roundNo"
+        android:text="@string/str_v_round"
+        android:textSize="@dimen/size_10"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clearAll"
+        android:text="@string/str_clear"
+        android:textSize="@dimen/size_10"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="Your Ad Unit ID"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSol2">
-
-        <Button
-            android:id="@+id/btnRound"
-            style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:onClick="roundNo"
-            android:text="@string/str_v_round"
-            android:textSize="@dimen/size_10"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnClear"
-            style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:onClick="clearAll"
-            android:text="@string/str_clear"
-            android:textSize="@dimen/size_10"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

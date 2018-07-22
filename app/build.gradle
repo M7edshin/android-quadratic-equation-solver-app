@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 26
 
     defaultConfig {
         applicationId "shahin.simplequadraticsolver"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 6
-        versionName "1.5"
+        targetSdkVersion 26
+        versionCode 7
+        versionName "1.6"
     }
     buildTypes {
         release {
@@ -20,15 +19,24 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.2.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
 
-    //FireBase
-    compile 'com.google.firebase:firebase-core:11.2.0'
-    compile 'com.google.firebase:firebase-ads:11.2.0'
-    compile 'com.google.android.gms:play-services-ads:11.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:26.1.0'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-ads:15.0.1'
+    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+
+    implementation 'com.android.support:cardview-v7:26.1.0'
 
 }
+
 apply plugin: 'com.google.gms.google-services'
