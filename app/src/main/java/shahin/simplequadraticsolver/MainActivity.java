@@ -1,17 +1,15 @@
 package shahin.simplequadraticsolver;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,47 +17,44 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import com.google.android.gms.ads.MobileAds;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Views Declaration
-    EditText txtA, txtB, txtC;
-    TextView tvSol1, tvSol2, vReason, tvInfo;
-    MediaPlayer mPlayer;
-    Button btnRound;
-    LinearLayout linearLayout_extra;
+    @BindView(R.id.et_a) EditText et_a;
+    @BindView(R.id.et_b) EditText et_b;
+    @BindView(R.id.et_c) EditText et_c;
+    @BindView(R.id.tv_sol_one) TextView tv_sol_one;
+    @BindView(R.id.tv_sol_two) TextView tv_sol_two;
+    @BindView(R.id.tv_reason) TextView tv_reason;
+    @BindView(R.id.btn_round) TextView btn_round;
+    @BindView(R.id.adView) AdView adView;
+    @BindView(R.id.tv_info) ShimmerTextView tv_info;
 
-    //Variable Declaration
-    double sol1, sol2;
+    private MediaPlayer mPlayer;
+    private double sol1, sol2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        //Find the views and cast them
-        tvInfo = (TextView) findViewById(R.id.tvInfo);
-        tvSol1 = (TextView) findViewById(R.id.tvSol1);
-        tvSol2 = (TextView) findViewById(R.id.tvSol2);
-        vReason = (TextView) findViewById(R.id.tvReason);
-        txtA = (EditText) findViewById(R.id.txtA);
-        txtB = (EditText) findViewById(R.id.txtB);
-        txtC = (EditText) findViewById(R.id.txtC);
-        btnRound = (Button) findViewById(R.id.btnRound);
-        linearLayout_extra = (LinearLayout) findViewById(R.id.linearLayout_extra);
-
-        tvSol1.setVisibility(View.INVISIBLE);
-        tvSol2.setVisibility(View.INVISIBLE);
-        vReason.setVisibility(View.INVISIBLE);
-        linearLayout_extra.animate().alpha(0).setDuration(0);
-
-        MobileAds.initialize(this, "ca-app-pub-1885749404874590~5960525662");
-
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        MobileAds.initialize(this, "Your Ad ID");
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        adView.loadAd(adRequest);
 
+        tv_sol_one.setVisibility(View.INVISIBLE);
+        tv_sol_two.setVisibility(View.INVISIBLE);
+        tv_reason.setVisibility(View.INVISIBLE);
+
+        Shimmer shimmer = new Shimmer();
+        shimmer.start(tv_info);
     }
 
     @Override
@@ -85,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 return true;
+
+            case R.id.action_rate:
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=shahin.simplequadraticsolver")));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Getting it in separate method
     private double discriminant(double a, double b, double c) {
-        double disc = 0;
+        double disc;
         //b2 – 4ac
         disc = Math.pow(b, 2) - (4 * a * c);
         return disc;
@@ -103,49 +103,47 @@ public class MainActivity extends AppCompatActivity {
         String reason;
 
         //Nested If statement also if statement within if statement to control the entries (Error Trap)
-        if (!txtA.getText().toString().isEmpty() && !txtB.getText().toString().isEmpty() && !txtC.getText().toString().isEmpty() &&
-                !txtA.getText().toString().equals(".") && !txtB.getText().toString().equals(".") && !txtC.getText().toString().equals(".") &&
-                !txtA.getText().toString().equals("-") && !txtB.getText().toString().equals("-") && !txtC.getText().toString().equals("-")) {
+        if (!et_a.getText().toString().isEmpty() && !et_b.getText().toString().isEmpty() && !et_c.getText().toString().isEmpty() &&
+                !et_a.getText().toString().equals(".") && !et_b.getText().toString().equals(".") && !et_c.getText().toString().equals(".") &&
+                !et_a.getText().toString().equals("-") && !et_b.getText().toString().equals("-") && !et_c.getText().toString().equals("-")) {
 
-            double a = Double.parseDouble(txtA.getText().toString());
-            double b = Double.parseDouble(txtB.getText().toString());
-            double c = Double.parseDouble(txtC.getText().toString());
+            double a = Double.parseDouble(et_a.getText().toString());
+            double b = Double.parseDouble(et_b.getText().toString());
+            double c = Double.parseDouble(et_c.getText().toString());
 
             if (a == 0) {
                 mPlayer = MediaPlayer.create(this, R.raw.error);
                 mPlayer.start();
-                Toast.makeText(getApplicationContext(), R.string.str_coefficient, Toast.LENGTH_SHORT).show();
+                snackBarShort(getString(R.string.str_coefficient));
+
             } else {
                 if (discriminant(a, b, c) > 0) {
                     sol1 = (-b + Math.sqrt(discriminant(a, b, c))) / (2 * a);
                     sol2 = (-b - Math.sqrt(discriminant(a, b, c))) / (2 * a);
                     reason = getString(R.string.str_two_solution);
-                    tvSol1.setText(getString(R.string.str_x_positive) + Double.toString(sol1));
-                    tvSol2.setText(getString(R.string.str_x_negative) + Double.toString(sol2));
-                    vReason.setText(reason);
-                    tvSol1.setVisibility(View.VISIBLE);
-                    tvSol2.setVisibility(View.VISIBLE);
-                    vReason.setVisibility(View.VISIBLE);
-                    linearLayout_extra.animate().alpha(1).setDuration(2000);
+                    tv_sol_one.setText(String.format("%s %s", getString(R.string.str_positive_equal), Double.toString(sol1)));
+                    tv_sol_two.setText(String.format("%s %s", getString(R.string.str_negative_equal), Double.toString(sol2)));
+                    tv_reason.setText(reason);
+                    tv_sol_one.setVisibility(View.VISIBLE);
+                    tv_sol_two.setVisibility(View.VISIBLE);
+                    tv_reason.setVisibility(View.VISIBLE);
                     mPlayer = MediaPlayer.create(this, R.raw.clicks137);
                     mPlayer.start();
                 } else if (discriminant(a, b, c) == 0) {
                     sol1 = (-b + Math.sqrt(discriminant(a, b, c))) / (2 * a);
                     reason = getString(R.string.str_one_solution);
-                    tvSol1.setText(getString(R.string.str_x) + Double.toString(sol1));
-                    vReason.setText(reason);
-                    tvSol1.setVisibility(View.VISIBLE);
-                    vReason.setVisibility(View.VISIBLE);
-                    linearLayout_extra.animate().alpha(1).setDuration(2000);
+                    tv_sol_one.setText(String.format("%s%s", getString(R.string.str_x), Double.toString(sol1)));
+                    tv_reason.setText(reason);
+                    tv_sol_one.setVisibility(View.VISIBLE);
+                    tv_reason.setVisibility(View.VISIBLE);
                     mPlayer = MediaPlayer.create(this, R.raw.clicks137);
                     mPlayer.start();
                 } else {
                     reason = getString(R.string.str_no_solution);
-                    vReason.setText(reason);
-                    tvSol1.setVisibility(View.INVISIBLE);
-                    tvSol2.setVisibility(View.INVISIBLE);
-                    linearLayout_extra.animate().alpha(1).setDuration(2000);
-                    vReason.setVisibility(View.VISIBLE);
+                    tv_reason.setText(reason);
+                    tv_sol_one.setVisibility(View.INVISIBLE);
+                    tv_sol_two.setVisibility(View.INVISIBLE);
+                    tv_reason.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -153,11 +151,10 @@ public class MainActivity extends AppCompatActivity {
 
             mPlayer = MediaPlayer.create(this, R.raw.error);
             mPlayer.start();
-            tvSol1.setVisibility(View.INVISIBLE);
-            tvSol2.setVisibility(View.INVISIBLE);
-            vReason.setVisibility(View.INVISIBLE);
-            linearLayout_extra.animate().alpha(0).setDuration(0);
-            Toast.makeText(getApplicationContext(), R.string.str_enter_cofficient, Toast.LENGTH_SHORT).show();
+            tv_sol_one.setVisibility(View.INVISIBLE);
+            tv_sol_two.setVisibility(View.INVISIBLE);
+            tv_reason.setVisibility(View.INVISIBLE);
+            snackBarShort(getString(R.string.str_enter_cofficient));
 
         }
     }
@@ -168,22 +165,26 @@ public class MainActivity extends AppCompatActivity {
         String roundSol1 = String.format("%.2f", sol1);
         String roundSol2 = String.format("%.2f", sol2);
 
-        tvSol1.setText(getString(R.string.str_positive_equal) + roundSol1);
-        tvSol2.setText(getString(R.string.str_negative_equal) + roundSol2);
+        tv_sol_one.setText(String.format("%s %s", getString(R.string.str_positive_equal), roundSol1));
+        tv_sol_two.setText(String.format("%s %s", getString(R.string.str_negative_equal), roundSol2));
         mPlayer = MediaPlayer.create(this, R.raw.clicks148);
         mPlayer.start();
     }
 
     public void clearAll(View view) {
+        tv_sol_one.setText("");
+        tv_sol_two.setText("");
+        tv_reason.setText("");
+        et_a.getText().clear();
+        et_b.getText().clear();
+        et_c.getText().clear();
+        et_a.requestFocus();
+    }
 
-        tvSol1.setText("");
-        tvSol2.setText("");
-        vReason.setText("");
-        txtA.setText("");
-        txtB.setText("");
-        txtC.setText("");
-        linearLayout_extra.animate().alpha(0).setDuration(0);
-
+    private void snackBarShort(String message){
+        Snackbar snackbar = Snackbar
+                .make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
     private void sendEmail(String text) {
@@ -199,19 +200,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void rateApp() {
-        Uri uri = Uri.parse("market://details?id=" + getApplicationContext().getPackageName());
-        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-        // To count with Play market backstack, After pressing back button,
-        // to taken back to our application, we need to add following flags to intent.
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        try {
-            startActivity(goToMarket);
-        } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName())));
-        }
-    }
+
 }
