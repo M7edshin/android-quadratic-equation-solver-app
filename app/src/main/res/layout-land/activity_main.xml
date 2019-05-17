@@ -13,19 +13,18 @@
 
     <ImageView
         android:id="@+id/iv_formula"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/text_formula"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:src="@drawable/img_formula"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/tv_info"
@@ -33,74 +32,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/str_v_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_formula" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_formula"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_a"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:hint="@string/str_v_a"
         android:inputType="numberSigned|numberDecimal"
         android:minLines="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/et_b"
+        app:layout_constraintStart_toStartOf="@+id/tv_info"
         app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
     <EditText
         android:id="@+id/et_b"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:gravity="center"
         android:hint="@string/str_v_b"
         android:inputType="numberSigned|numberDecimal"
         android:minLines="0"
         app:layout_constraintEnd_toStartOf="@+id/et_c"
-        app:layout_constraintStart_toEndOf="@+id/et_a"
         app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
     <EditText
         android:id="@+id/et_c"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:hint="@string/str_v_c"
         android:inputType="numberSigned|numberDecimal"
         android:minLines="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_info" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_info"
+        app:layout_constraintTop_toTopOf="@+id/et_b" />
 
 
     <Button
         android:id="@+id/btn_solution"
         style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:onClick="solve"
-        android:padding="20dp"
+        android:padding="10dp"
         android:text="@string/str_v_solve"
-        android:textSize="@dimen/size_20"
+        android:textSize="@dimen/size_15"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_a" />
+        app:layout_constraintEnd_toEndOf="@+id/et_c"
+        app:layout_constraintStart_toStartOf="@+id/et_a"
+        app:layout_constraintTop_toBottomOf="@+id/et_b" />
 
     <TextView
         android:id="@+id/tv_reason"
@@ -108,10 +104,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="@string/str_v_reason"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sol_one" />
 
     <TextView
         android:id="@+id/tv_sol_one"
@@ -122,7 +118,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/str_sol"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reason" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sol_two" />
 
     <TextView
         android:id="@+id/tv_sol_two"
@@ -133,32 +129,34 @@
         android:layout_marginTop="8dp"
         android:text="@string/str_sol"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sol_one" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_formula" />
 
     <Button
         android:id="@+id/btn_round"
         style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="roundNo"
         android:text="@string/str_v_round"
         android:textSize="@dimen/size_10"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toStartOf="@+id/button2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button2"
         style="@android:style/Widget.DeviceDefault.Light.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:onClick="clearAll"
         android:text="@string/str_clear"
         android:textSize="@dimen/size_10"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.gms.ads.AdView
@@ -166,14 +164,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         app:adSize="SMART_BANNER"
         app:adUnitId="@string/ad_unit_main_activity"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_solution" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

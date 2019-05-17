@@ -15,7 +15,20 @@
     </style>
 
     <style name="StyleTextViewGeneral">
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+
+    <style name="StyleTextViewSolutionTabletMode">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="StyleTextViewGeneralTabletMode">
+        <item name="android:textSize">25sp</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>

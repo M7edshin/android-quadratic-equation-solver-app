@@ -2,24 +2,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_report_suggest"
-        android:orderInCategory="100"
-        android:title="@string/action_report"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_report"/>
-
-    <item
         android:id="@+id/action_rate"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/rate_app"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_rate"/>
 
     <item
         android:id="@+id/action_equation_info"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:title="@string/action_about"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_policy"
+        android:title="@string/privacy_policy"
+        android:orderInCategory="3"
+        app:showAsAction="never" />
 
 </menu>
