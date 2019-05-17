@@ -2,6 +2,14 @@
 
 Entering the coefficients for the Ax2 + Bx + C = 0 equation and Quadratic Equation will output the solutions (if they are not imaginary).
 
+Features:
+
+1- Solve the equation gives you ( One solution or two solution ) but doesn't support complex answers
+
+2- Simple and easy to use
+
+3- Round the results to two decimal points
+
 ![alt text](https://i.imgur.com/crltZPm.png?1)
 
 ### Features
@@ -17,7 +25,7 @@ https://play.google.com/store/apps/details?id=shahin.simplequadraticsolver
 
 ## License
 
-   Copyright [2018] [Mohamed Shahin]
+   Copyright [2019] [Mohamed Shahin]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
